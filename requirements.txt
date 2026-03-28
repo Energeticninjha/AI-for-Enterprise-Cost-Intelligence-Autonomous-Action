@@ -1,0 +1,13 @@
+langgraph
+langchain
+langchain-community
+streamlit
+fastapi
+uvicorn
+cryptography
+pypdf2
+pdfplumber
+pandas
+fpdf
+python-dotenv
+pytest

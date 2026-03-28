@@ -1,0 +1,16 @@
+# Environment Variables
+.env
+
+# Python
+__pycache__/
+*.pyc
+
+# Local Data / DB
+db/audit_log.db
+data/mail_inbox/*
+!data/mail_inbox/.gitkeep
+data/processed_history/*
+!data/processed_history/.gitkeep
+data/live_trace.log
+app/audit_export.pdf
+streamlit_error.log

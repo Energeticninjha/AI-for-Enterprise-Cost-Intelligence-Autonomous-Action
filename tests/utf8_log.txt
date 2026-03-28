@@ -1,0 +1,36 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.12.10, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\dell\AppData\Local\Programs\Python\Python312\python.exe
+cachedir: .pytest_cache
+rootdir: E:\ET GEN AI HACKATHON\AvataarFlow\tests
+plugins: anyio-4.13.0, langsmith-0.7.22
+collecting ... collected 4 items
+
+test_self_healing.py::test_validate_pan PASSED                           [ 25%]
+test_self_healing.py::test_validate_gstin PASSED                         [ 50%]
+test_self_healing.py::test_detect_sme_issues PASSED                      [ 75%]
+test_self_healing.py::test_pdf_parsing FAILED                            [100%]
+
+================================== FAILURES ===================================
+______________________________ test_pdf_parsing _______________________________
+
+scenarios_data = [{'category': 'professional_services', 'description': 'All details correct', 'name': 'Normal clean PR', 'pdf_path': 'E...t', 'name': 'Approval stall', 'pdf_path': 'E:\\ET GEN AI HACKATHON\\AvataarFlow\\tests\\data\\scenario_3_pr.pdf', ...}]
+
+    def test_pdf_parsing(scenarios_data):
+        # Test Scenario 1 (Clean)
+        data_1 = parse_pr_pdf(scenarios_data[0]["pdf_path"])
+        assert data_1["pan"] == "AAAAA0000A"
+        assert data_1["gstin"] == "27AAAAA0000A1Z5"
+        assert data_1["amount"] == 150000.0
+        assert data_1["pr_number"] == "PR-1001"
+    
+        # Test Scenario 2 (Messy)
+        data_2 = parse_pr_pdf(scenarios_data[1]["pdf_path"])
+>       assert data_2["pan"] == ""
+E       AssertionError: assert 'Total Amount: 50000.0' == ''
+E         
+E         + Total Amount: 50000.0
+
+test_self_healing.py:56: AssertionError
+=========================== short test summary info ===========================
+FAILED test_self_healing.py::test_pdf_parsing - AssertionError: assert 'Total...
+========================= 1 failed, 3 passed in 0.19s =========================
